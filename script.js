@@ -2,14 +2,16 @@ console.log("What's popping world!");
 
 let humanScore = 0;
 let computerScore = 0;
+humanChoice = humanValue();
+computerChoice = computerValue();
 
-function getHumanChoice() {
+function humanValue() {
   const input = prompt("Type rock, paper, or scissors.");
   const normalized = input.toLowerCase();
   return normalized;
 }
 
-function getComputerChoice() {
+function computerValue() {
   const randomNumber = Math.random();
 
   if (randomNumber < 1 / 3) {
@@ -21,26 +23,32 @@ function getComputerChoice() {
   }
 }
 
-function playRound(getHumanChoice, getComputerChoice) {
-  if (getHumanChoice === getComputerChoice) {
-    return "Tie!";
+function playRound(humanValue, computerValue) {
+  console.log("You choose:" + humanValue);
+  console.log("Computer choose:" + computerValue);
+  if (humanValue === computerValue) {
+    console.log("Tie!");
   } else if (
-    (getHumanChoice === "rock" && getComputerChoice === "scissors") ||
-    (getHumanChoice === "paper" && getComputerChoice === "rock") ||
-    (getHumanChoice === "scissors" && getComputerChoice === "paper")
+    (humanValue === "rock" && computerValue === "scissors") ||
+    (humanValue === "paper" && computerValue === "rock") ||
+    (humanValue === "scissors" && computerValue === "paper")
   ) {
     humanScore++;
-    return console.log("Good Job! You Win!!!");
+    console.log("Good Job! You Win!!!");
   } else {
     computerScore++;
-    return console.log("Sorry! Computer Wins");
+    console.log("Sorry! Computer Wins");
   }
 }
 
 for (let i = 0; i < 5; i++) {
-  const humanChoice = getHumanChoice();
-  const computerChoice = getComputerChoice();
+  const humanChoice = humanValue();
+  const computerChoice = computerValue();
   playRound(humanChoice, computerChoice);
+
+  console.log(
+    "Human score:" + humanScore + " | Computer Score:" + computerScore,
+  );
 }
 
 if (humanScore > computerScore) {
