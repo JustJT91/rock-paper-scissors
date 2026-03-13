@@ -1,5 +1,19 @@
 console.log("What's popping world!");
 
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissors");
+
+rockBtn.addEventListener("click", () => {
+  playRound("rock");
+});
+paperBtn.addEventListener("click", () => {
+  playRound("paper");
+});
+scissorBtn.addEventListener("click", () => {
+  playRound("scissors");
+});
+
 let humanScore = 0;
 let computerScore = 0;
 humanChoice = humanValue();
@@ -21,6 +35,8 @@ function computerValue() {
   } else {
     return "scissors";
   }
+  computerChoice = getComputerChoice();
+  console.log(computerChoice);
 }
 
 function playRound(humanValue, computerValue) {
