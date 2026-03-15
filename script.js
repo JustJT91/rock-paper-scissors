@@ -35,8 +35,6 @@ function computerValue() {
   } else {
     return "scissors";
   }
-  computerChoice = getComputerChoice();
-  console.log(computerChoice);
 }
 
 function playRound(humanValue, computerValue) {
