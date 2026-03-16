@@ -3,27 +3,46 @@ console.log("What's popping world!");
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorBtn = document.querySelector("#scissors");
-
-rockBtn.addEventListener("click", () => {
-  playRound("rock");
-});
-paperBtn.addEventListener("click", () => {
-  playRound("paper");
-});
-scissorBtn.addEventListener("click", () => {
-  playRound("scissors");
-});
+const scoreDisplay = document.querySelector("#score");
+const computerChoiceDisplay = document.querySelector("#computerChoice");
+const roundResultDisplay = document.querySelector("#roundResult");
+const finalResultDisplay = document.querySelector("#finalWinner");
 
 let humanScore = 0;
 let computerScore = 0;
-humanChoice = humanValue();
-computerChoice = computerValue();
 
-function humanValue() {
-  const input = prompt("Type rock, paper, or scissors.");
-  const normalized = input.toLowerCase();
-  return normalized;
-}
+rockBtn.addEventListener("click", () => {
+  const humanValue = "rock";
+  const computerChoice = computerValue();
+  computerChoiceDisplay.textContent = " Computer chose:" + computerChoice;
+  const roundResult = playRound(humanValue, computerChoice);
+  roundResultDisplay.textContent = roundResult;
+  scoreDisplay.textContent =
+    "Human score:" + humanScore + " | Computer Score:" + computerScore;
+  finalResultDisplay.textContent = finalResult();
+});
+
+paperBtn.addEventListener("click", () => {
+  const humanValue = "paper";
+  const computerChoice = computerValue();
+  computerChoiceDisplay.textContent = " Computer chose:" + computerChoice;
+  const roundResult = playRound(humanValue, computerChoice);
+  roundResultDisplay.textContent = roundResult;
+  scoreDisplay.textContent =
+    "Human score:" + humanScore + " | Computer Score:" + computerScore;
+  finalResultDisplay.textContent = finalResult();
+});
+
+scissorBtn.addEventListener("click", () => {
+  const humanValue = "scissors";
+  const computerChoice = computerValue();
+  computerChoiceDisplay.textContent = " Computer chose:" + computerChoice;
+  const roundResult = playRound(humanValue, computerChoice);
+  roundResultDisplay.textContent = roundResult;
+  scoreDisplay.textContent =
+    "Human score:" + humanScore + " | Computer Score:" + computerScore;
+  finalResultDisplay.textContent = finalResult();
+});
 
 function computerValue() {
   const randomNumber = Math.random();
@@ -38,37 +57,25 @@ function computerValue() {
 }
 
 function playRound(humanValue, computerValue) {
-  console.log("You choose:" + humanValue);
-  console.log("Computer choose:" + computerValue);
   if (humanValue === computerValue) {
-    console.log("Tie!");
+    return "Tie!";
   } else if (
     (humanValue === "rock" && computerValue === "scissors") ||
     (humanValue === "paper" && computerValue === "rock") ||
     (humanValue === "scissors" && computerValue === "paper")
   ) {
     humanScore++;
-    console.log("Good Job! You Win!!!");
+    return "Good Job! You Win!!!";
   } else {
     computerScore++;
-    console.log("Sorry! Computer Wins");
+    return "Sorry! Computer Wins";
   }
 }
 
-for (let i = 0; i < 5; i++) {
-  const humanChoice = humanValue();
-  const computerChoice = computerValue();
-  playRound(humanChoice, computerChoice);
-
-  console.log(
-    "Human score:" + humanScore + " | Computer Score:" + computerScore,
-  );
-}
-
-if (humanScore > computerScore) {
-  console.log("You Win!!!");
-} else if (computerScore > humanScore) {
-  console.log("Sorry! You Lose.");
-} else {
-  console.log("It's a tie!!!");
+function finalResult() {
+  if (humanScore === 3) {
+    return "You Win!!!";
+  } else if (computerScore === 3) {
+    return "Sorry! You Lose.";
+  } else "";
 }
