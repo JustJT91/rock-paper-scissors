@@ -73,9 +73,9 @@ function playRound(humanValue, computerValue) {
 }
 
 function finalResult() {
-  if (humanScore === 3) {
+  if (humanScore === 5) {
     return "You Win!!!";
-  } else if (computerScore === 3) {
+  } else if (computerScore === 5) {
     return "Sorry! You Lose.";
   } else "";
 }
